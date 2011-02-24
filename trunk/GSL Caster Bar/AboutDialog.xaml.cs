@@ -65,9 +65,10 @@ namespace GSL_Caster_Bar
             //banelingsound.Position = TimeSpan.Zero;
         }
 
-        private void Hyperlink_Click(object sender, RoutedEventArgs e)
+        private void GoogleCodeLink_Click(object sender, RoutedEventArgs e)
         {
-            
+            //Uri googlecode = GoogleCodeLink.NavigateUri;
+            System.Diagnostics.Process.Start("http://code.google.com/p/gslbar");
         }
 
 
