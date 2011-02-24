@@ -166,12 +166,6 @@ namespace GSL_Caster_Bar
                 changel2.Visibility = Visibility.Collapsed;
         }
 
-        private void Window_Loaded(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-
         private void P1Red_Click(object sender, RoutedEventArgs e)
         {
             Position1.Foreground = Brushes.Red;
