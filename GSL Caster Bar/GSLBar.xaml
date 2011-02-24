@@ -75,7 +75,7 @@
                 <ScaleTransform ScaleX="1.5" />
             </TextBlock.RenderTransform>
             </TextBlock>
-            <TextBlock Canvas.Left="9" Canvas.Top="3" Height="25" Name="scorep1" Text="0" Width="37" Foreground="White" TextAlignment="Center" FontSize="16" FontFamily="Times New Roman" FontWeight="Bold">
+            <TextBlock Canvas.Left="9" Canvas.Top="2" Height="25" Name="scorep1" Text="0" Width="37" Foreground="White" TextAlignment="Center" FontSize="16" FontFamily="Times New Roman" FontWeight="Bold">
                 <TextBlock.RenderTransform>
                 <ScaleTransform ScaleX="1.5" />
             </TextBlock.RenderTransform>
