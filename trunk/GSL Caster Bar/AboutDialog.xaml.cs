@@ -24,6 +24,7 @@ namespace GSL_Caster_Bar
         {
             this.Left = SystemParameters.PrimaryScreenWidth / 3;
             this.Top = SystemParameters.PrimaryScreenHeight / 3;
+            
             InitializeComponent();
 
             //mp = new MediaPlayer();

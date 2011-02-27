@@ -14,21 +14,13 @@ using System.Windows.Shapes;
 namespace GSL_Caster_Bar
 {
     /// <summary>
-    /// Interaction logic for Options.xaml
+    /// Interaction logic for MapName.xaml
     /// </summary>
-    public partial class Options : Window
+    public partial class MapName : Window
     {
-
-        public Options()
+        public MapName()
         {
             InitializeComponent();
         }
-
-        private void btn_close_Click(object sender, RoutedEventArgs e)
-        {
-            MainWindow.QuickSetP1(player1edit.Text);
-            this.Close();
-        }
-
     }
 }

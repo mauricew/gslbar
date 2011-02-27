@@ -7,12 +7,12 @@
             <TabItem Header="General" Name="tabItem1">
                 <Grid />
             </TabItem>
-            <TabItem Header="Players" HorizontalAlignment="Left" Name="tabItem2" VerticalAlignment="Top">
+            <TabItem Header="Players" HorizontalAlignment="Left" Name="tabItem2" VerticalAlignment="Top" Margin="0">
                 <Grid>
                     <Label Content="Player 1" FontSize="16" Height="38" HorizontalAlignment="Left" Margin="17,6,0,0" Name="player1head" VerticalAlignment="Top" Width="77" />
                     <Label Content="Player 2" FontSize="16" Height="38" HorizontalAlignment="Right" Margin="0,6,168,0" Name="player2head" VerticalAlignment="Top" Width="77" />
-                    <TextBox Height="23" HorizontalAlignment="Left" Margin="17,50,0,0" Name="player1edit" VerticalAlignment="Top" Width="120" TextChanged="player1edit_TextChanged" />
-                    <TextBox Height="23" HorizontalAlignment="Left" Margin="223,50,0,0" Name="player2edit" VerticalAlignment="Top" Width="120" TextChanged="player2edit_TextChanged" />
+                    <TextBox Height="23" HorizontalAlignment="Left" Margin="17,50,0,0" Name="player1edit" VerticalAlignment="Top" Width="120" />
+                    <TextBox Height="23" HorizontalAlignment="Left" Margin="223,50,0,0" Name="player2edit" VerticalAlignment="Top" Width="120" />
                 </Grid>
             </TabItem>
             <TabItem Header="Other" />
