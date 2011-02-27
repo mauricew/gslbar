@@ -12,5 +12,7 @@ namespace GSL_Caster_Bar
     /// </summary>
     public partial class App : Application
     {
+
+        
     }
 }
