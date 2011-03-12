@@ -1,6 +1,4 @@
-#summary List of hotkeys for version 0.3 and higher. (Updated for 0.3 beta)
-
-_(Updated as of 0.3 beta; may change in final version so check back for newer documentation.)_
+#summary List of hotkeys for version 0.3 and higher. (Updated for v0.3 release)
 
 You can access the options window, which contains the majority of these settings, with the *F12* key.
 ----
@@ -24,3 +22,5 @@ You can access the options window, which contains the majority of these settings
 || F11 || Show/Hide score bar ||
 || Ctrl+Plus || Increase player name font ||
 || Ctrl+Minus || Decrease player name font ||
+
+_updated as of v0.3_
