@@ -57,7 +57,12 @@ namespace GSL_Caster_Bar
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-
+            if (MainWindow.isThisABetaVersion)
+            {
+                textBlock2.Text += "Beta ";
+            }
+            else textBlock2.Text += "Version ";
+            textBlock2.Text += System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString(3);
         }
 
         private void banelingsound_MediaOpened(object sender, RoutedEventArgs e)
@@ -70,6 +75,11 @@ namespace GSL_Caster_Bar
         {
             //Uri googlecode = GoogleCodeLink.NavigateUri;
             System.Diagnostics.Process.Start("http://code.google.com/p/gslbar");
+        }
+
+        private void TLlink_Click(object sender, RoutedEventArgs e)
+        {
+            System.Diagnostics.Process.Start("http://www.teamliquid.net/forum/viewmessage.php?topic_id=195571");
         }
 
 

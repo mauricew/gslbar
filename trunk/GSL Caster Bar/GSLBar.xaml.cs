@@ -8,6 +8,7 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
@@ -21,17 +22,90 @@ namespace GSL_Caster_Bar
 
     public partial class MainWindow : Window
     {
-        public static string PlayerOne;
+        public static string PlayerOne = "Player 1";
+        public static string PlayerTwo = "Player 2";
+        public static string PositionOne = "P1";
+        public static string PositionTwo = "T2";
+        public static int ScoreP1 = 0;
+        public static int ScoreP2 = 0;
+        public static int Color1;
+        public static int Color2;
+        public static int Race1;
+        public static int Race2;
+        public static string SetText;
+
+        public static MainWindow MWAccess;
+        public static TextBlock Player1Access;
+        public static TextBlock Player2Access;
+        public static TextBlock Pos1Access;
+        public static TextBlock Pos2Access;
+        public static TextBlock SetTextAccess;
+        public static Image Race1Access;
+        public static Image Race2Access;
+        public static TextBlock Score1Access;
+        public static TextBlock Score2Access;
+
+        public static bool OnTop = true;
+        public static bool IsMovable = true;
+        public static bool RaceIconsEnabled = false;
+        public static bool ScoreBarEnabled = true;
+        public static bool VSTextEnabled = true;
+        public static bool isThisABetaVersion = false;
+        public static bool MainWndHidden = true;
+
         Options optWnd;
         BrushConverter conv = new BrushConverter();
-        Brush SCBlue;
-        //Point Drag1;
+        public static Brush SCRed;
+        public static Brush SCBlue;
+
         public MainWindow()
         {
-            //FilterCommand.InputGestures.Add(new KeyGesture(Key.F, ModifierKeys.Control));
             InitializeComponent();
-            SCBlue = (Brush)conv.ConvertFrom("#FF0077E1");
+            InitStaticMethods();
+            ContextMenuSetup();
             this.Top = 1.0;
+            SCRed = (Brush)conv.ConvertFrom("#FFDD0000");
+            SCBlue = (Brush)conv.ConvertFrom("#FF0077E1");
+            FadeAnim().Begin();
+            MainWndHidden = false;
+        }
+
+        public void ContextMenuSetup()
+        {
+            if (OnTop) UseRaceIcon.IsChecked = true;
+            if (IsMovable) Movable.IsChecked = true;
+            if (RaceIconsEnabled) UseRaceIcon.IsChecked = true;
+            else if (!RaceIconsEnabled) UseRaceIcon.IsChecked = false;
+            if(ScoreBarEnabled) ShowScore.IsChecked = true;
+            if (VSTextEnabled) ShowVersus.IsChecked = true;
+        }
+
+        private void InitStaticMethods()
+        {
+            MWAccess = this;
+            Player1Access = Player1;
+            Player2Access = Player2;
+            Pos1Access = Position1;
+            Pos2Access = Position2;
+            SetTextAccess = settext;
+            Race1Access = racep1;
+            Race2Access = racep2;
+            Score1Access = scorep1;
+            Score2Access = scorep2;
+            Color1 = 0;
+            Color2 = 1;
+            Race1 = 0;
+            Race2 = 1;
+        }
+
+        public static void SetScorePlayer1(int P1)
+        {
+            Score1Access.Text = P1.ToString();
+        }
+
+        public static void SetScorePlayer2(int P2)
+        {
+            Score2Access.Text = P2.ToString();
         }
 
         private void Exit_Click(object sender, RoutedEventArgs e)
@@ -41,10 +115,13 @@ namespace GSL_Caster_Bar
 
         private void OpenOptions_Click(object sender, RoutedEventArgs e)
         {
+            ShowOptions();
+        }
+
+        private void ShowOptions()
+        {
             optWnd = new Options();
-            optWnd.player1edit.Text = Player1.Text;
             optWnd.Show();
-            //MessageBox.Show("Not yet implemented ;)", "Use context menu bro");
         }
 
         private void ChangePlayer1_Click(object sender, RoutedEventArgs e)
@@ -79,24 +156,60 @@ namespace GSL_Caster_Bar
 
         private void changep1_TextChanged(object sender, TextChangedEventArgs e)
         {
-            Player1.Text = changep1.Text;
+            PlayerOne = changep1.Text;
         }
 
         private void changep2_TextChanged(object sender, TextChangedEventArgs e)
         {
-            Player2.Text = changep2.Text;
+            PlayerTwo = changep2.Text;
         }
 
         private void changep1_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key.Equals(Key.Enter))
+            {
                 changep1.Visibility = Visibility.Collapsed;
+                Player1.Text = PlayerOne;
+            }
         }
 
         private void changep2_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key.Equals(Key.Enter))
+            {
                 changep2.Visibility = Visibility.Collapsed;
+                Player2.Text = PlayerTwo;
+            }
+        }
+
+        public static void SetPlayer1Ext()
+        {
+            Player1Access.Text = PlayerOne;
+        }
+
+        public static void SetPlayer2Ext()
+        {
+            Player2Access.Text = PlayerTwo;
+        }
+
+        public static void SetPos1Ext()
+        {
+            Pos1Access.Text = PositionOne;
+        }
+
+        public static void SetPos2Ext()
+        {
+            Pos2Access.Text = PositionTwo;
+        }
+
+        public static void SetColor1Ext()
+        {
+            
+        }
+
+        public static void SetColor2Ext()
+        {
+
         }
 
         private void ChangePos1_Click(object sender, RoutedEventArgs e)
@@ -137,24 +250,30 @@ namespace GSL_Caster_Bar
 
         private void changel1_TextChanged(object sender, TextChangedEventArgs e)
         {
-            Position1.Content = changel1.Text;
+            PositionOne = changel1.Text;
         }
 
         private void changel2_TextChanged(object sender, TextChangedEventArgs e)
         {
-            Position2.Content = changel2.Text;
+            PositionTwo = changel2.Text;
         }
 
         private void changel1_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key.Equals(Key.Enter))
+            {
                 changel1.Visibility = Visibility.Collapsed;
+                Position1.Text = PositionOne;
+            }
         }
 
         private void changel2_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key.Equals(Key.Enter))
+            {
                 changel2.Visibility = Visibility.Collapsed;
+                Position2.Text = PositionTwo;
+            }
         }
 
         private void P1Red_Click(object sender, RoutedEventArgs e)
@@ -199,7 +318,7 @@ namespace GSL_Caster_Bar
 
         private void P2Red_Click(object sender, RoutedEventArgs e)
         {
-            Position2.Foreground = Brushes.Red;
+            Position2.Foreground = SCRed;
         }
 
         private void P2Blue_Click(object sender, RoutedEventArgs e)
@@ -256,7 +375,14 @@ namespace GSL_Caster_Bar
 
         private void Grid_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            DragMove();
+            if (IsMovable)
+            {
+                DragMove();
+                if (Top < 1)
+                {
+                    Top = 1;
+                }
+            }
         }
 
         private void About_Click(object sender, RoutedEventArgs e)
@@ -266,6 +392,11 @@ namespace GSL_Caster_Bar
         }
 
         private void AlwaysOnTop_Click(object sender, RoutedEventArgs e)
+        {
+            ChangeOnTop();
+        }
+
+        public void ChangeOnTop()
         {
             if (this.Topmost == true) this.Topmost = false;
             else this.Topmost = true;
@@ -278,8 +409,16 @@ namespace GSL_Caster_Bar
 
         private void ShowScoreArea()
         {
-            if (scorebar.Visibility == Visibility.Visible) scorebar.Visibility = Visibility.Collapsed;
-            else scorebar.Visibility = Visibility.Visible;
+            if (scorebar.Visibility == Visibility.Visible)
+            {
+                scorebar.Visibility = Visibility.Collapsed;
+                ScoreBarEnabled = false;
+            }
+            else
+            {
+                scorebar.Visibility = Visibility.Visible;
+                ScoreBarEnabled = true;
+            }
         }
 
         private void changescorep1_Click(object sender, RoutedEventArgs e)
@@ -404,19 +543,24 @@ namespace GSL_Caster_Bar
                 ChangePlayerOne();
             }
 
-            else if (e.Key == Key.F10)
+            else if (e.Key == Key.F8)
             {
                 RaceIconState();
             }
 
-            else if (e.Key == Key.F11)
+            else if (e.Key == Key.F9)
             {
                 ShowVersusArea();
             }
 
-            else if (e.Key == Key.F12)
+            else if (e.Key == Key.F11)
             {
                 ShowScoreArea();
+            }
+
+            else if (e.Key == Key.F12)
+            {
+                ShowOptions();
             }
 
             else if (e.Key == Key.F3 && Keyboard.Modifiers.HasFlag(ModifierKeys.Shift))
@@ -432,6 +576,17 @@ namespace GSL_Caster_Bar
             else if (e.Key == Key.OemPlus && Keyboard.Modifiers.HasFlag(ModifierKeys.Control))
             {
                 IncreasePlayerNameFont();
+            }
+
+            else if (e.Key == Key.F5 && MainWndHidden)
+            {
+                FadeAnim().Begin();
+                MainWndHidden = false;
+            }
+            else if (e.Key == Key.F6 && !MainWndHidden)
+            {
+                FadeAnim().Begin();
+                MainWndHidden = true;
             }
         }
 
@@ -450,9 +605,9 @@ namespace GSL_Caster_Bar
             if (Player1.FontSize <= 44)
             {
                 Player1.FontSize += 2;
-                Player1.Margin = new Thickness(Player1.Margin.Left, Player1.Margin.Top - 1.5, Player1.Margin.Right, Player1.Margin.Bottom);
+                Player1.Margin = new Thickness(Player1.Margin.Left, Player1.Margin.Top - 1.75, Player1.Margin.Right, Player1.Margin.Bottom);
                 Player2.FontSize += 2;
-                Player2.Margin = new Thickness(Player2.Margin.Left, Player2.Margin.Top - 1.5, Player2.Margin.Right, Player2.Margin.Bottom);
+                Player2.Margin = new Thickness(Player2.Margin.Left, Player2.Margin.Top - 1.75, Player2.Margin.Right, Player2.Margin.Bottom);
             }
         }
 
@@ -461,9 +616,9 @@ namespace GSL_Caster_Bar
             if (Player1.FontSize >= 16)
             {
                 Player1.FontSize -= 2;
-                Player1.Margin = new Thickness(Player1.Margin.Left, Player1.Margin.Top + 1.5, Player1.Margin.Right, Player1.Margin.Bottom);
+                Player1.Margin = new Thickness(Player1.Margin.Left, Player1.Margin.Top + 1.75, Player1.Margin.Right, Player1.Margin.Bottom);
                 Player2.FontSize -= 2;
-                Player2.Margin = new Thickness(Player2.Margin.Left, Player2.Margin.Top + 1.5, Player2.Margin.Right, Player2.Margin.Bottom);
+                Player2.Margin = new Thickness(Player2.Margin.Left, Player2.Margin.Top + 1.75, Player2.Margin.Right, Player2.Margin.Bottom);
             }
         }
 
@@ -472,7 +627,7 @@ namespace GSL_Caster_Bar
             RaceIconState();
         }
 
-        private void RaceIconState()
+        public void RaceIconState()
         {
             if (Position1.Visibility == Visibility.Visible)
             {
@@ -482,6 +637,7 @@ namespace GSL_Caster_Bar
                 racep2.Visibility = Visibility.Visible;
                 RaceIcon.IsEnabled = true;
                 PlayerPos.IsEnabled = false;
+                RaceIconsEnabled = true;
             }
             else
             {
@@ -491,50 +647,57 @@ namespace GSL_Caster_Bar
                 racep2.Visibility = Visibility.Collapsed;
                 RaceIcon.IsEnabled = false;
                 PlayerPos.IsEnabled = true;
+                RaceIconsEnabled = false;
             }
         }
 
         private void ChangeRace1P_Click(object sender, RoutedEventArgs e)
         {
             AssignRaceIcon(1, 'P');
+            Race1 = 0;
         }
 
         private void ChangeRace1T_Click(object sender, RoutedEventArgs e)
         {
             AssignRaceIcon(1, 'T');
+            Race1 = 1;
         }
 
         private void ChangeRace1Z_Click(object sender, RoutedEventArgs e)
         {
             AssignRaceIcon(1, 'Z');
+            Race1 = 2;
         }
 
         private void ChangeRace2P_Click(object sender, RoutedEventArgs e)
         {
             AssignRaceIcon(2, 'P');
+            Race2 = 0;
         }
 
         private void ChangeRace2T_Click(object sender, RoutedEventArgs e)
         {
             AssignRaceIcon(2, 'T');
+            Race2 = 1;
         }
 
         private void ChangeRace2Z_Click(object sender, RoutedEventArgs e)
         {
             AssignRaceIcon(2, 'Z');
+            Race2 = 2;
         }
 
-        private void AssignRaceIcon(int playernum, char race)
+        public static void AssignRaceIcon(int playernum, char race)
         {
             Image raceimg;
             BitmapImage raceimage = new BitmapImage();
             if (playernum == 1)
             {
-                raceimg = racep1;
+                raceimg = Race1Access;
             }
             else
             {
-                raceimg = racep2;
+                raceimg = Race2Access;
             }
             raceimage.BeginInit();
             if (race == 'P')
@@ -542,7 +705,7 @@ namespace GSL_Caster_Bar
                 raceimage.UriSource = new Uri("pack://application:,,,/GSL Caster Bar;component/Res/protossicon.png");
             }
             else if (race == 'T')
-            {
+            {   
                 raceimage.UriSource = new Uri("pack://application:,,,/GSL Caster Bar;component/Res/terranicon.png");
             }
             else
@@ -553,14 +716,45 @@ namespace GSL_Caster_Bar
             raceimg.Source = raceimage;
         }
 
-        private void Grid_KeyDown(object sender, KeyEventArgs e)
+        private void MainWnd_Closed(object sender, EventArgs e)
         {
-            Player1.Text = PlayerOne;
+            Application.Current.Shutdown();
         }
 
-        public static void QuickSetP1(String P1Name)
+        private void Movable_Click(object sender, RoutedEventArgs e)
         {
-            //Player1.Text = P1Name;
+            if (IsMovable) IsMovable = false;
+            else IsMovable = true;
+        }
+
+        private Storyboard FadeAnim()
+        {
+            Storyboard fadeboard = new Storyboard();
+            DoubleAnimation thefade = new DoubleAnimation();
+            TimeSpan fadedurr = new TimeSpan(0, 0, 0, 0, 300);
+            if(MainWndHidden)
+            {
+                thefade.From = 0.0;
+                thefade.To = 1.0;
+            }
+            else
+            {
+                thefade.From = 1.0;
+                thefade.To = 0.0;
+            }
+            thefade.Duration = new Duration(fadedurr);
+
+            Storyboard.SetTarget(thefade, this);
+            Storyboard.SetTargetProperty(thefade, new PropertyPath(Control.OpacityProperty));
+
+            fadeboard.Children.Add(thefade);
+
+            return fadeboard;
+        }
+
+        private void MainWnd_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if (!MainWndHidden) FadeAnim().Begin();
         }
     }
 

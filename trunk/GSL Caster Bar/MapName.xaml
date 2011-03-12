@@ -1,8 +1,9 @@
 ﻿<Window x:Class="GSL_Caster_Bar.MapName"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="MapName" Height="123" Width="300" DataContext="{Binding}" WindowStyle="None" Name="MapOverlay">
+        Title="MapName" Height="123" Width="317" DataContext="{Binding}" WindowStyle="None" Name="MapOverlay">
     <Grid>
-        
+        <TextBlock Height="25" HorizontalAlignment="Left" Name="mapLabel" Text="Map" VerticalAlignment="Top" FontSize="16" Width="37" />
+        <TextBlock Height="33" HorizontalAlignment="Left" Margin="44,12,0,0" Name="mapName" Text="Map Name Goes Here" VerticalAlignment="Top" FontSize="24" Width="239" />
     </Grid>
 </Window>
