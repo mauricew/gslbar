@@ -17,6 +17,8 @@ You can access the options window, which contains the majority of these settings
 
 = Changing appearance =
 || *Key combination* || *Action performed* ||
+|| F5 || Make window appear (when hidden) ||
+|| F6 || Make window disappear (when invisible) ||
 || F8 || Replace position text with race icons (defaults to blank) ||
 || F9 || Show/Hide "VS" text (soon to be user-replaceable) ||
 || F11 || Show/Hide score bar ||
