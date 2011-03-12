@@ -84,6 +84,9 @@
     <Compile Include="ColorSelect.xaml.cs">
       <DependentUpon>ColorSelect.xaml</DependentUpon>
     </Compile>
+    <Compile Include="VictoryL3.xaml.cs">
+      <DependentUpon>VictoryL3.xaml</DependentUpon>
+    </Compile>
     <Page Include="AboutDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -104,6 +107,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="NameL3.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Options.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -116,15 +123,17 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="VictoryL3.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Images.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Images.resx</DependentUpon>
-    </Compile>
     <Compile Include="MapName.xaml.cs">
       <DependentUpon>MapName.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="NameL3.xaml.cs">
+      <DependentUpon>NameL3.xaml</DependentUpon>
     </Compile>
     <Compile Include="Options.xaml.cs">
       <DependentUpon>Options.xaml</DependentUpon>
@@ -145,11 +154,6 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <EmbeddedResource Include="Images.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Images.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -198,16 +202,11 @@
   <ItemGroup>
     <Resource Include="Res\about.png" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="ViewModel\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Resource Include="Res\protossicon.png" />
     <Resource Include="Res\terranicon.png" />
     <Resource Include="Res\zergicon.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\loadingkorhal.jpg" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Res\lol.png" />
