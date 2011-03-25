@@ -36,16 +36,30 @@ namespace GSL_Caster_Bar
         bool ShowScoreBarChecked;
         bool ShowVSChecked;
 
+        PlayerNameL3 pnl3fromopt1;
+        PlayerNameL3 pnl3fromopt2;
+
+        PlayerWinL3 pnw3fromopt1;
+        PlayerWinL3 pnw3fromopt2;
+
         Brush colorselect1;
         Brush colorselect2;
-        BrushConverter conv = new BrushConverter();        
+        BrushConverter conv = new BrushConverter();
+        Microsoft.Win32.OpenFileDialog getsound = new Microsoft.Win32.OpenFileDialog();
 
         public Options()
         {
             InitializeComponent();
         }
 
-        private void btn_close_Click(object sender, RoutedEventArgs e)
+        private void btn_ok_Click(object sender, RoutedEventArgs e)
+        {
+            ApplyActions();
+            MainWindow.MWAccess.ContextMenuSetup();
+            this.Close();
+        }
+
+        private void ApplyActions()
         {
             if (P1NameChanged)
             {
@@ -97,6 +111,7 @@ namespace GSL_Caster_Bar
             }
             if (SetTextChanged)
             {
+                MainWindow.CustomSetText = TheSetText.Text;
                 MainWindow.SetTextAccess.Text = TheSetText.Text;
             }
             if (MovableChecked)
@@ -146,14 +161,6 @@ namespace GSL_Caster_Bar
                 if (MainWindow.RaceIconsEnabled == true) MainWindow.MWAccess.RaceIconState();
             }
 
-            if (P1Color.SelectedIndex == P2Color.SelectedIndex)
-            {
-                MessageBox.Show("Hey now, you have the same color selected for both players!");
-                return;
-            }
-
-            MainWindow.MWAccess.ContextMenuSetup();
-            this.Close();
         }
 
         private void P1Name_TextChanged(object sender, TextChangedEventArgs e)
@@ -230,7 +237,7 @@ namespace GSL_Caster_Bar
             {
                 P1Position.IsEnabled = false;
             }
-            else P1Position.Text = MainWindow.Pos1Access.Text; ;
+            else P1Position.Text = MainWindow.Pos1Access.Text;
         }
 
         private void P2Position_Loaded(object sender, RoutedEventArgs e)
@@ -277,6 +284,19 @@ namespace GSL_Caster_Bar
             if (MainWindow.IsMovable) check_move.IsChecked = true;
             if (MainWindow.RaceIconsEnabled) check_raceicons.IsChecked = true;
             if (MainWindow.VSTextEnabled) check_showvs.IsChecked = true;
+            if (!MainWindow.RaceIconsEnabled) P1Race.IsEnabled = false;
+            P1Race.SelectedIndex = MainWindow.Race1;
+            if (!MainWindow.RaceIconsEnabled) P2Race.IsEnabled = false;
+            P2Race.SelectedIndex = MainWindow.Race2;
+
+            if (MainWindow.sound_filename == "file:///C:/none")
+            {
+                currentFileName.Content += "none";
+            }
+
+            else currentFileName.Content += MainWindow.sound_filename;
+
+            VolumeSlider.Value = MainWindow.sound_volume;
         }
 
         private void check_ontop_Checked(object sender, RoutedEventArgs e)
@@ -292,6 +312,7 @@ namespace GSL_Caster_Bar
         private void check_raceicons_Checked(object sender, RoutedEventArgs e)
         {
             UseRaceIconsChecked = true;
+            SwitchToRaceIcons();
         }
         
         private void check_scorebar_Checked(object sender, RoutedEventArgs e)
@@ -317,6 +338,7 @@ namespace GSL_Caster_Bar
         private void check_raceicons_Unchecked(object sender, RoutedEventArgs e)
         {
             UseRaceIconsChecked = false;
+            SwitchFromRaceIcons();
         }
 
         private void check_scorebar_Unchecked(object sender, RoutedEventArgs e)
@@ -337,7 +359,7 @@ namespace GSL_Caster_Bar
         private void TheSetText_Loaded(object sender, RoutedEventArgs e)
         {
             if (!MainWindow.ScoreBarEnabled) TheSetText.IsEnabled = false;
-            TheSetText.Text = MainWindow.SetTextAccess.Text;
+            TheSetText.Text = MainWindow.CustomSetText;
         }
 
         private void P1Score_Loaded(object sender, RoutedEventArgs e)
@@ -354,14 +376,12 @@ namespace GSL_Caster_Bar
 
         private void P1Race_Loaded(object sender, RoutedEventArgs e)
         {
-            if (!MainWindow.RaceIconsEnabled) P1Race.IsEnabled = false;
-            P1Race.SelectedIndex = MainWindow.Race1;
+            
         }
 
         private void P2Race_Loaded(object sender, RoutedEventArgs e)
         {
-            if (!MainWindow.RaceIconsEnabled) P2Race.IsEnabled = false;
-            P2Race.SelectedIndex = MainWindow.Race2;
+            
         }
 
         private void P1Color_Loaded(object sender, RoutedEventArgs e)
@@ -374,6 +394,127 @@ namespace GSL_Caster_Bar
         {
             if (MainWindow.RaceIconsEnabled) P2Color.IsEnabled = false;
             P2Color.SelectedIndex = MainWindow.Color2;
+        }
+
+        private void btn_Apply_Click(object sender, RoutedEventArgs e)
+        {
+            ApplyActions();
+            MainWindow.MWAccess.ContextMenuSetup();
+        }
+
+        private void btn_cancel_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+
+        private void SwitchToRaceIcons()
+        {
+            P1Color.IsEnabled = false;
+            P2Color.IsEnabled = false;
+            P1Position.IsEnabled = false;
+            P2Position.IsEnabled = false;
+            P1Race.IsEnabled = true;
+            P2Race.IsEnabled = true;
+        }
+
+        private void SwitchFromRaceIcons()
+        {
+            P1Color.IsEnabled = true;
+            P2Color.IsEnabled = true;
+            P1Position.IsEnabled = true;
+            P2Position.IsEnabled = true;
+            P1Race.IsEnabled = false;
+            P2Race.IsEnabled = false;
+        }
+
+        private void btn_BrowseForSound_Click(object sender, RoutedEventArgs e)
+        {
+            SetUpOpenDialog();
+            Nullable<bool> result = getsound.ShowDialog();
+            if (result == true) MainWindow.sound_pathname = getsound.FileName;
+            MainWindow.IntroSound.Open(new Uri(MainWindow.sound_pathname));
+            MainWindow.sound_filename = getsound.SafeFileName;
+            currentFileName.Content = getsound.SafeFileName;
+        }
+
+        private void SetUpOpenDialog()
+        {
+            getsound.Filter = "Sound files|*.mp3;*.wav";
+            
+        }
+
+        private void btn_PlaySound_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow.IntroSound.Open(new Uri(MainWindow.sound_pathname));
+            MainWindow.IntroSound.Play();
+        }
+
+        private void VolumeSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            MainWindow.IntroSound.Volume = VolumeSlider.Value;
+            MainWindow.sound_volume = VolumeSlider.Value;
+        }
+
+        private void btn_FadeIn_Click(object sender, RoutedEventArgs e)
+        {
+            if (MainWindow.MainWndHidden)
+            {
+                MainWindow.FadeAnim().Begin();
+                MainWindow.MainWndHidden = false;
+            }
+        }
+
+        private void btn_FadeOut_Click(object sender, RoutedEventArgs e)
+        {
+            if (!MainWindow.MainWndHidden)
+            {
+                MainWindow.FadeAnim().Begin();
+                MainWindow.MainWndHidden = true;
+            }
+        }
+
+        private void btn_P1Intro_Click(object sender, RoutedEventArgs e)
+        {
+            pnl3fromopt1 = new PlayerNameL3(MainWindow.PlayerOne, MainWindow.Pos1Access.Foreground);
+            pnl3fromopt1.Show();
+        }
+
+        private void btn_P2Intro_Click(object sender, RoutedEventArgs e)
+        {
+            pnl3fromopt2 = new PlayerNameL3(MainWindow.PlayerOne, MainWindow.Pos2Access.Foreground);
+            pnl3fromopt2.Show();
+        }
+
+        private void btn_P1IntroClose_Click(object sender, RoutedEventArgs e)
+        {
+            if(pnl3fromopt1 != null) pnl3fromopt1.Close();
+        }
+
+        private void btn_P2IntroClose_Click(object sender, RoutedEventArgs e)
+        {
+            if(pnl3fromopt2 != null) pnl3fromopt2.Close();
+        }
+
+        private void btn_P1WIN_Click(object sender, RoutedEventArgs e)
+        {
+            pnw3fromopt1 = new PlayerWinL3(MainWindow.PlayerOne);
+            pnw3fromopt1.Show();
+        }
+
+        private void btn_P2WIN_Click(object sender, RoutedEventArgs e)
+        {
+            pnw3fromopt2 = new PlayerWinL3(MainWindow.PlayerTwo);
+            pnw3fromopt2.Show();
+        }
+
+        private void btn_P1WinClose_Click(object sender, RoutedEventArgs e)
+        {
+            pnw3fromopt1.Close();
+        }
+
+        private void btn_P2WinClose_Click(object sender, RoutedEventArgs e)
+        {
+            pnw3fromopt2.Close();
         }
 
     }

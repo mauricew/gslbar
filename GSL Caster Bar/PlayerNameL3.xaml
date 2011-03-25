@@ -1,0 +1,18 @@
+﻿<Window x:Class="GSL_Caster_Bar.PlayerNameL3"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Player Name" Height="85" Width="480" WindowStyle="None" Left="0" ResizeMode="NoResize" AllowsTransparency="True" Name="NameL3" KeyDown="NameL3_KeyDown" Closing="NameL3_Closing" ShowInTaskbar="True">
+    <Window.Background>
+        <SolidColorBrush />
+    </Window.Background>
+    <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="Res/NameL3.png" />
+        </Grid.Background>
+        <TextBlock Height="62" HorizontalAlignment="Left" Margin="0,14,0,0" Name="textBlock1" Text="TextBlock" VerticalAlignment="Top" Width="458" Foreground="#FFDD0000" FontSize="48" TextAlignment="Center" FontFamily="Eurostile" FontWeight="DemiBold">
+            <TextBlock.Effect>
+                <DropShadowEffect Color="Black" ShadowDepth="1.25"/>
+            </TextBlock.Effect>
+        </TextBlock>
+    </Grid>
+</Window>
