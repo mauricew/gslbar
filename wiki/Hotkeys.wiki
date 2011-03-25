@@ -1,4 +1,4 @@
-#summary List of hotkeys for version 0.3 and higher. (Updated for v0.3 release)
+#summary List of hotkeys for version 0.3 and higher. (Updated for v0.4 release)
 
 You can access the options window, which contains the majority of these settings, with the *F12* key.
 ----
@@ -23,4 +23,11 @@ You can access the options window, which contains the majority of these settings
 || Ctrl+Plus || Increase player name font ||
 || Ctrl+Minus || Decrease player name font ||
 
-_updated as of v0.3_
+= Showing Player Information =
+|| *Key combination* || *Action performed* ||
+|| F3 || Show Player 1 lower third ||
+|| F4 || Show Player 2 lower third ||
+|| Ctrl-F3 || Show Player 1 as winner ||
+|| Ctrl-F4 || Show Player 2 as winner ||
+
+_updated as of v0.4_
