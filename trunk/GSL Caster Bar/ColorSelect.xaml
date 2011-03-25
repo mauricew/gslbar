@@ -1,11 +1,12 @@
 ﻿<Window x:Class="GSL_Caster_Bar.ColorSelect"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Select Color" Height="68" Width="186" WindowStyle="ToolWindow" Background="{StaticResource {x:Static SystemColors.AppWorkspaceBrushKey}}">
+        Title="Select Color" Height="96" Width="186" WindowStyle="ToolWindow" Background="{StaticResource {x:Static SystemColors.AppWorkspaceBrushKey}}" Closing="Window_Closing">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto" />
             <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="12*" />
         </Grid.ColumnDefinitions>
         <Rectangle Height="16" Margin="10,10,0,0" Name="rectangle1" Stroke="Black" Fill="Red" VerticalAlignment="Top" MouseLeftButtonDown="rectangle1_MouseLeftButtonDown" Width="16" HorizontalAlignment="Left" />
         <Rectangle Height="16" HorizontalAlignment="Left" Margin="28,10,0,0" Name="rectangle2" Stroke="Black" Fill="Blue" VerticalAlignment="Top" Width="16" MouseLeftButtonDown="rectangle2_MouseLeftButtonDown" />
@@ -14,6 +15,8 @@
         <Rectangle Height="16" HorizontalAlignment="Left" Margin="82,10,0,0" Name="rectangle5" Stroke="Black" Fill="Green" VerticalAlignment="Top" Width="16" MouseLeftButtonDown="rectangle5_MouseLeftButtonDown" />
         <Rectangle Height="16" Margin="100,10,0,0" Name="rectangle6" Stroke="Black" Fill="Yellow" VerticalAlignment="Top" HorizontalAlignment="Left" Width="16" MouseLeftButtonDown="rectangle6_MouseLeftButtonDown" />
         <Rectangle Height="16" HorizontalAlignment="Left" Margin="2,10,0,0" Name="rectangle7" Stroke="Black" Fill="Orange" VerticalAlignment="Top" Width="16" MouseLeftButtonDown="rectangle7_MouseLeftButtonDown" Grid.Column="1" />
-        <Rectangle Height="16" HorizontalAlignment="Left" Margin="20,10,0,0" Name="rectangle8" Stroke="Black" Fill="Brown" VerticalAlignment="Top" Width="16" MouseLeftButtonDown="rectangle8_MouseLeftButtonDown" Grid.Column="1" />
+        <Rectangle Height="16" HorizontalAlignment="Left" Margin="20,10,0,0" Name="rectangle8" Stroke="Black" Fill="LightPink" VerticalAlignment="Top" Width="16" MouseLeftButtonDown="rectangle8_MouseLeftButtonDown" Grid.Column="1" />
+        <Label Content="Current:" Height="28" HorizontalAlignment="Left" Margin="6,32,0,0" Name="label1" VerticalAlignment="Top" />
+        <Rectangle Grid.ColumnSpan="2" Height="15" HorizontalAlignment="Left" Margin="58,38,0,0" Name="rect_curr" Stroke="Black" VerticalAlignment="Top" Width="80" />
     </Grid>
 </Window>

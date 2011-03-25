@@ -2,17 +2,17 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="Options" ResizeMode="NoResize" mc:Ignorable="d" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" Height="350" Width="525" WindowStartupLocation="CenterScreen" Loaded="Window_Loaded">
-    <Grid>
-        <Button Content="Close" Height="23" HorizontalAlignment="Left" Margin="416,291,0,0" Name="btn_close" VerticalAlignment="Top" Width="75" Click="btn_close_Click" />
+    <Grid Background="{StaticResource {x:Static SystemColors.MenuBrushKey}}">
+        <Button Content="OK" Height="23" HorizontalAlignment="Left" Margin="263,291,0,0" Name="btn_ok" VerticalAlignment="Top" Width="75" Click="btn_ok_Click" />
         <TabControl HorizontalAlignment="Stretch" Margin="12,9,12,36" Name="tabControl1" VerticalAlignment="Stretch" TabStripPlacement="Top">
             <TabItem Header="General" HorizontalAlignment="Stretch" Name="GeneralTab" VerticalAlignment="Stretch" IsEnabled="True">
                 <Grid>
-                    <CheckBox Content="Use race icons instead of position identifiers" Height="16" HorizontalAlignment="Left" Margin="6,57,0,0" Name="check_raceicons" VerticalAlignment="Top" Checked="check_raceicons_Checked" Unchecked="check_raceicons_Unchecked" />
-                    <CheckBox Content="Always show on Top (recommended)" Height="16" HorizontalAlignment="Left" Margin="6,13,0,0" Name="check_ontop" VerticalAlignment="Top" Checked="check_ontop_Checked" Unchecked="check_ontop_Unchecked" />
-                    <CheckBox Content="Show &quot;VS&quot; text" Height="16" HorizontalAlignment="Left" Margin="6,105,0,0" Name="check_showvs" VerticalAlignment="Top" Checked="check_showvs_Checked" Unchecked="check_showvs_Unchecked" />
-                    <CheckBox Content="Show the score bar" Height="16" HorizontalAlignment="Left" Margin="6,81,0,0" Name="check_scorebar" VerticalAlignment="Top" Checked="check_scorebar_Checked" Unchecked="check_scorebar_Unchecked" />
-                    <Button Content="About..." Height="23" HorizontalAlignment="Left" Margin="388,205,0,0" Name="aboutdialogBtn" VerticalAlignment="Top" Width="75" Click="aboutdialogBtn_Click" />
-                    <CheckBox Content="Allow overlay to be moved" Height="16" HorizontalAlignment="Left" Margin="6,35,0,0" Name="check_move" VerticalAlignment="Top" IsEnabled="True" Checked="check_move_Checked" Unchecked="check_move_Unchecked" />
+                    <CheckBox Content="Use race icons instead of position identifiers" Height="16" HorizontalAlignment="Left" Margin="6,54,0,0" Name="check_raceicons" VerticalAlignment="Top" Checked="check_raceicons_Checked" Unchecked="check_raceicons_Unchecked" />
+                    <CheckBox Content="Always show on Top (recommended)" Height="16" HorizontalAlignment="Left" Margin="6,6,0,0" Name="check_ontop" VerticalAlignment="Top" Checked="check_ontop_Checked" Unchecked="check_ontop_Unchecked" />
+                    <CheckBox Content="Show &quot;VS&quot; text" Height="16" HorizontalAlignment="Left" Margin="6,102,0,0" Name="check_showvs" VerticalAlignment="Top" Checked="check_showvs_Checked" Unchecked="check_showvs_Unchecked" />
+                    <CheckBox Content="Show the score bar" Height="16" HorizontalAlignment="Left" Margin="6,78,0,0" Name="check_scorebar" VerticalAlignment="Top" Checked="check_scorebar_Checked" Unchecked="check_scorebar_Unchecked" />
+                    <Button Content="About..." Height="23" HorizontalAlignment="Left" Margin="388,205,0,0" Name="btn_about" VerticalAlignment="Top" Width="75" Click="aboutdialogBtn_Click" />
+                    <CheckBox Content="Allow overlay to be moved" Height="16" HorizontalAlignment="Left" Margin="6,30,0,0" Name="check_move" VerticalAlignment="Top" IsEnabled="True" Checked="check_move_Checked" Unchecked="check_move_Unchecked" />
                 </Grid>
             </TabItem>
             <TabItem Header="Players" Name="PlayersTab" IsSelected="True">
@@ -35,13 +35,13 @@
                             <TextBox FontSize="12" Height="23" HorizontalAlignment="Left" Margin="131,63,0,0" Name="P1Position" VerticalAlignment="Top" Width="75" TextChanged="P1Position_TextChanged" Loaded="P1Position_Loaded" />
                             <Label Content="Position" FontSize="12" Height="28" HorizontalAlignment="Left" Margin="6,61,0,0" Name="label5" VerticalAlignment="Top" />
                             <Label Content="Race" FontSize="12" Height="28" HorizontalAlignment="Left" Margin="6,92,0,0" Name="label7" VerticalAlignment="Top" />
-                            <ComboBox Height="23" HorizontalAlignment="Left" Margin="128,95,0,0" Name="P1Race" VerticalAlignment="Top" Width="78" FontSize="12" SelectionChanged="P1Race_SelectionChanged" Loaded="P1Race_Loaded">
+                            <ComboBox Height="23" HorizontalAlignment="Left" Margin="132,92,0,0" Name="P1Race" VerticalAlignment="Top" Width="74" FontSize="12" SelectionChanged="P1Race_SelectionChanged" Loaded="P1Race_Loaded">
                                 <ComboBoxItem Content="Protoss" />
                                 <ComboBoxItem Content="Terran" />
                                 <ComboBoxItem Content="Zerg" />
                             </ComboBox>
-                            <TextBox FontSize="12" Height="23" HorizontalAlignment="Left" Margin="132,133,0,0" Name="P1Score" VerticalAlignment="Top" Width="75" TextChanged="P1Score_TextChanged" MaxLength="2" Loaded="P1Score_Loaded" />
-                            <Label Content="Score" FontSize="12" Height="28" HorizontalAlignment="Left" Margin="6,131,0,0" Name="label9" VerticalAlignment="Top" />
+                            <TextBox FontSize="12" Height="23" HorizontalAlignment="Left" Margin="132,130,0,0" Name="P1Score" VerticalAlignment="Top" Width="75" TextChanged="P1Score_TextChanged" MaxLength="2" Loaded="P1Score_Loaded" />
+                            <Label Content="Score" FontSize="12" Height="28" HorizontalAlignment="Left" Margin="6,125,0,0" Name="label9" VerticalAlignment="Top" />
                         </Grid>
                     </GroupBox>
                     <GroupBox Header="Player 2" Height="190" HorizontalAlignment="Left" Margin="234,10,0,0" Name="Player2Opts" VerticalAlignment="Top" Width="225" FontSize="16">
@@ -62,19 +62,54 @@
                             <TextBox FontSize="12" Height="23" HorizontalAlignment="Left" Margin="132,63,0,0" Name="P2Position" VerticalAlignment="Top" Width="75" TextChanged="P2Position_TextChanged" Loaded="P2Position_Loaded" />
                             <Label Content="Position" FontSize="12" Height="28" HorizontalAlignment="Left" Margin="6,61,0,0" Name="label6" VerticalAlignment="Top" />
                             <Label Content="Race" FontSize="12" Height="28" HorizontalAlignment="Left" Margin="6,92,0,0" Name="label8" VerticalAlignment="Top" />
-                            <ComboBox Height="23" HorizontalAlignment="Left" Margin="132,95,0,0" Name="P2Race" VerticalAlignment="Top" Width="75" FontSize="12" SelectionChanged="P2Race_SelectionChanged" Loaded="P2Race_Loaded">
+                            <ComboBox Height="23" HorizontalAlignment="Left" Margin="132,92,0,0" Name="P2Race" VerticalAlignment="Top" Width="75" FontSize="12" SelectionChanged="P2Race_SelectionChanged" Loaded="P2Race_Loaded">
                                 <ComboBoxItem Content="Protoss" />
                                 <ComboBoxItem Content="Terran" />
                                 <ComboBoxItem Content="Zerg" />
                             </ComboBox>
-                            <TextBox FontSize="12" Height="23" HorizontalAlignment="Left" Margin="132,133,0,0" Name="P2Score" VerticalAlignment="Top" Width="75" TextChanged="P2Score_TextChanged" MaxLength="2" Loaded="P2Score_Loaded" />
-                            <Label Content="Score" FontSize="12" Height="28" HorizontalAlignment="Left" Margin="6,131,0,0" Name="label10" VerticalAlignment="Top" />
+                            <TextBox FontSize="12" Height="23" HorizontalAlignment="Left" Margin="132,130,0,0" Name="P2Score" VerticalAlignment="Top" Width="75" TextChanged="P2Score_TextChanged" MaxLength="2" Loaded="P2Score_Loaded" />
+                            <Label Content="Score" FontSize="12" Height="28" HorizontalAlignment="Left" Margin="6,125,0,0" Name="label10" VerticalAlignment="Top" />
                         </Grid>
                     </GroupBox>
-                    <Label Content="&quot;SET&quot; text" FontSize="12" Height="28" HorizontalAlignment="Left" Margin="12,200,0,0" Name="label11" VerticalAlignment="Top" />
-                    <TextBox Height="23" HorizontalAlignment="Left" Margin="96,202,0,0" VerticalAlignment="Top" Width="92" Name="TheSetText" TextChanged="TheSetText_TextChanged" MaxLength="6" Loaded="TheSetText_Loaded" />
+                    <Label Content="Custom &quot;SET&quot; text" FontSize="12" Height="28" HorizontalAlignment="Left" Margin="12,200,0,0" Name="label11" VerticalAlignment="Top" />
+                    <TextBox Height="23" HorizontalAlignment="Left" Margin="126,202,0,0" VerticalAlignment="Top" Width="92" Name="TheSetText" TextChanged="TheSetText_TextChanged" MaxLength="6" Loaded="TheSetText_Loaded" />
+                </Grid>
+            </TabItem>
+            <TabItem Header="Actions" Name="ActionsTab">
+                <Grid>
+                    <GroupBox Header="Introductions" Height="222" HorizontalAlignment="Left" Margin="6,6,0,0" Name="Intros" VerticalAlignment="Top" Width="184">
+                        <Grid>
+                            <Button Content="Player 1" Height="23" HorizontalAlignment="Left" Margin="6,6,0,0" Name="btn_P1Intro" VerticalAlignment="Top" Width="75" Click="btn_P1Intro_Click" />
+                            <Button Content="Player 2" Height="23" HorizontalAlignment="Left" Margin="6,44,0,0" Name="btn_P2Intro" VerticalAlignment="Top" Width="75" Click="btn_P2Intro_Click" />
+                            <Button Content="Close" Height="23" HorizontalAlignment="Left" Margin="110,6,0,0" Name="btn_P1IntroClose" VerticalAlignment="Top" Width="45" Click="btn_P1IntroClose_Click" />
+                            <Button Content="Close" Height="23" HorizontalAlignment="Left" Margin="110,44,0,0" Name="btn_P2IntroClose" VerticalAlignment="Top" Width="45" Click="btn_P2IntroClose_Click" />
+                            <Label Content="Sound" Height="28" HorizontalAlignment="Left" Margin="6,85,0,0" Name="label12" VerticalAlignment="Top" />
+                            <Button Content="Browse..." Height="23" HorizontalAlignment="Left" Margin="6,136,0,0" Name="btn_BrowseForSound" VerticalAlignment="Top" Width="75" Click="btn_BrowseForSound_Click" />
+                            <Button Content="Play" Height="23" HorizontalAlignment="Left" Margin="110,136,0,0" Name="btn_PlaySound" VerticalAlignment="Top" Width="45" Click="btn_PlaySound_Click" />
+                            <Label Content="Current file: " Height="28" HorizontalAlignment="Left" Margin="5,109,0,0" Name="currentFile" VerticalAlignment="Top" />
+                            <Label Height="28" HorizontalAlignment="Left" Margin="76,109,0,0" Name="currentFileName" VerticalAlignment="Top" Width="90" />
+                            <Slider Height="23" HorizontalAlignment="Left" Margin="66,170,0,0" Name="VolumeSlider" VerticalAlignment="Top" Width="100" ValueChanged="VolumeSlider_ValueChanged" Interval="33" Maximum="1" />
+                            <Label Content="Volume" Height="28" HorizontalAlignment="Left" Margin="6,165,0,0" Name="Volume" VerticalAlignment="Top" />
+                        </Grid>
+                    </GroupBox>
+                    <GroupBox Header="Main Window" Height="84" HorizontalAlignment="Left" Margin="246,123,0,0" Name="MainPrefs" VerticalAlignment="Top" Width="207">
+                        <Grid>
+                            <Button Content="Fade in" Height="23" HorizontalAlignment="Left" Margin="9,6,0,0" Name="btn_FadeIn" VerticalAlignment="Top" Width="75" Click="btn_FadeIn_Click" />
+                            <Button Content="Fade out" Height="23" HorizontalAlignment="Left" Margin="114,6,0,0" Name="btn_FadeOut" VerticalAlignment="Top" Width="75" Click="btn_FadeOut_Click" />
+                        </Grid>
+                    </GroupBox>
+                    <GroupBox Header="Win Conditions" Height="103" HorizontalAlignment="Left" Margin="246,6,0,0" Name="groupBox1" VerticalAlignment="Top" Width="207">
+                        <Grid>
+                            <Button Content="Player 1" Height="23" HorizontalAlignment="Left" Margin="9,6,0,0" Name="btn_P1WIN" VerticalAlignment="Top" Width="75" Click="btn_P1WIN_Click" />
+                            <Button Content="Player 2" Height="23" HorizontalAlignment="Left" Margin="9,44,0,0" Name="btn_P2WIN" VerticalAlignment="Top" Width="75" Click="btn_P2WIN_Click" />
+                            <Button Content="Close" Height="23" HorizontalAlignment="Left" Margin="126,6,0,0" Name="btn_P1WinClose" VerticalAlignment="Top" Width="45" Click="btn_P1WinClose_Click" />
+                            <Button Content="Close" Height="23" HorizontalAlignment="Left" Margin="126,44,0,0" Name="btn_P2WinClose" VerticalAlignment="Top" Width="45" Click="btn_P2WinClose_Click" />
+                        </Grid>
+                    </GroupBox>
                 </Grid>
             </TabItem>
         </TabControl>
+        <Button Content="Apply" Height="23" HorizontalAlignment="Left" Margin="428,291,0,0" Name="btn_Apply" VerticalAlignment="Top" Width="75" Click="btn_Apply_Click" />
+        <Button Content="Cancel" Height="23" HorizontalAlignment="Left" Margin="347,291,0,0" Name="btn_cancel" VerticalAlignment="Top" Width="75" Click="btn_cancel_Click" IsCancel="True" />
     </Grid>
 </Window>
